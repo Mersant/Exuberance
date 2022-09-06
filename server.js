@@ -28,24 +28,28 @@ app.get('/api/notes', (req, res) =>
 // API POST Routes
 app.post('/api/notes', (req, res) => {
   const { title, text } = req.body;
+  var newNote;
 
   if (title && text) {
-    const newNote = {
-      title,
-      text,
-    };
-
     fs.readFile(path.join(__dirname, '/db/db.json'), 'utf8', (err, data) => {
         if (err) {
           console.error(err);
         } else {
           const parsedData = JSON.parse(data);
+
+          // Determine what ID should be used
+          newId = Object.keys(parsedData).length;
+          newNote = {
+            title,
+            text,
+            id: newId,
+          };
           parsedData.push(newNote);
           fs.writeFile(path.join(__dirname, '/db/db.json'), JSON.stringify(parsedData, null, 4), (err) => {
             if (err) {
                 console.error(err);
             }
-          }
+            }
           );
         }
     });
@@ -60,6 +64,33 @@ app.post('/api/notes', (req, res) => {
     res.json('Error in adding note');
   }
 });
+
+// API DELETE Route
+app.delete('/api/notes/:id', (req, res) => {
+    fs.readFile(path.join(__dirname, '/db/db.json'), 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+          const parsedData = JSON.parse(data);
+          var newData = [];
+          for(var i=0; i<Object.keys(parsedData).length; i++) {
+            if(parsedData[i]["id"] != req.params.id) {
+                parsedData[i]["id"] = newData.length;
+                newData.push(parsedData[i]);
+            }
+          }
+          
+          fs.writeFile(path.join(__dirname, '/db/db.json'), JSON.stringify(newData, null, 4), (err) => {
+            if (err) {
+                console.error(err);
+            }
+            res.send(newData);
+            }
+          ); 
+        }
+    });
+  });
+
 
 // HTML GET Routes
 app.get('/notes', (req, res) =>
