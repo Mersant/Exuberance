@@ -8,7 +8,7 @@
     * [Guidlines for Contributing](#guidlines-for-contributing)
 
 
-![image](https://user-images.githubusercontent.com/102173297/188783263-3cdb51ea-cb90-46b7-8a17-566c1acc09f3.png)
+![image](https://user-images.githubusercontent.com/102173297/188783359-05c06e6b-b5e8-4f0b-b4c4-cee070ac4430.png)
 
 ## Description
 Exuberance is a simple, elegant note taking web application. It allows users to create and delete notes, all of which are saved for deletion as tasks are completed. 
