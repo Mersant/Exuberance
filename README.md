@@ -1,7 +1,6 @@
 # Exuberance
 #### Table of Contents
-- [Ultimate-README-Generator](#ultimate-readme-generator)
-        - [Table of Contents:](#table-of-contents-)
+- [Exuberance](#exuberance)
     * [Description](#description)
     * [Installation Instructions](#installation-instructions)
     * [Usage](#usage)
